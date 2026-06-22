@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开云 · 动感与联结</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fce4d6 0%, #fde9db 30%, #fbeee6 70%, #f5e3d5 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        .page-wrap {
+            max-width: 1120px;
+            width: 100%;
+        }
+
+        /* ----- 导航 ----- */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0 1.6rem;
+            border-bottom: 1px solid rgba(180, 110, 70, 0.18);
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .nav-brand {
+            font-weight: 600;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            color: #7b4d3a;
+            background: rgba(255, 245, 235, 0.7);
+            padding: 0.2rem 1rem 0.2rem 1.2rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 2px 8px rgba(160, 90, 60, 0.06);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.6rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #5a3e31;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.2rem 0.1rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #bf7f5a;
+            color: #3f2a1f;
+        }
+
+        /* ----- Hero / 简介 ----- */
+        .hero-section {
+            margin: 2.8rem 0 2.2rem;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 2.8rem;
+            font-weight: 550;
+            letter-spacing: 1px;
+            color: #3f2a1f;
+            line-height: 1.2;
+        }
+
+        .hero-section .sub {
+            font-size: 1.2rem;
+            color: #6b4d3b;
+            margin-top: 0.8rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(255, 245, 235, 0.45);
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            backdrop-filter: blur(2px);
+            display: inline-block;
+        }
+
+        .hero-desc {
+            margin-top: 2rem;
+            color: #3f3027;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            background: rgba(255, 248, 240, 0.7);
+            padding: 2rem 2.2rem;
+            border-radius: 32px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 12px 28px rgba(140, 80, 55, 0.07);
+            border: 1px solid rgba(230, 190, 165, 0.3);
+            text-align: left;
+        }
+
+        .hero-desc strong {
+            color: #8a5a3f;
+        }
+
+        .hero-desc a {
+            color: #9b5f3f;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0.05rem 0.2rem;
+            border-radius: 8px;
+            transition: background 0.15s;
+        }
+
+        .hero-desc a:hover {
+            background: rgba(180, 110, 70, 0.15);
+            text-decoration: underline wavy rgba(160, 90, 60, 0.2);
+        }
+
+        /* ----- 三个场景卡片 ----- */
+        .scenes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0 2.8rem;
+        }
+
+        .scene-card {
+            background: rgba(255, 248, 240, 0.8);
+            backdrop-filter: blur(6px);
+            border-radius: 28px;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 10px 20px rgba(130, 75, 50, 0.06);
+            border: 1px solid rgba(230, 190, 165, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.25s;
+        }
+
+        .scene-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 30px rgba(150, 85, 55, 0.10);
+            border-color: rgba(200, 150, 120, 0.4);
+        }
+
+        .scene-card h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #4a3327;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+            border-left: 5px solid #bf7f5a;
+            padding-left: 0.9rem;
+        }
+
+        .scene-card p {
+            color: #3f3027;
+            line-height: 1.7;
+            font-size: 0.98rem;
+        }
+
+        /* ----- 常见说明 (FAQ 摘要) ----- */
+        .faq-summary {
+            background: rgba(255, 245, 235, 0.5);
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 2rem 2.5rem;
+            margin-top: 0.8rem;
+            border: 1px solid rgba(210, 170, 145, 0.3);
+        }
+
+        .faq-summary h2 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #4a3327;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .faq-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            padding: 1rem 0;
+            border-bottom: 1px dashed rgba(170, 120, 90, 0.2);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #5a3e31;
+        }
+
+        .faq-a {
+            color: #3f3027;
+            line-height: 1.6;
+            font-size: 0.98rem;
+            padding-left: 1rem;
+        }
+
+        .faq-a a {
+            color: #9b5f3f;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(160, 90, 60, 0.3);
+            transition: border-bottom 0.2s;
+        }
+
+        .faq-a a:hover {
+            border-bottom: 1px solid #9b5f3f;
+        }
+
+        /* ----- 页尾 ----- */
+        .footer-note {
+            margin-top: 3rem;
+            text-align: center;
+            color: #7a5c4a;
+            font-size: 0.9rem;
+            padding: 1.5rem 0 0.2rem;
+            border-top: 1px solid rgba(180, 130, 100, 0.15);
+            letter-spacing: 0.3px;
+        }
+
+        .footer-note a {
+            color: #7a4f38;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(140, 85, 60, 0.2);
+        }
+
+        .footer-note a:hover {
+            border-bottom-color: #7a4f38;
+        }
+
+        /* ----- 响应式 ----- */
+        @media (max-width: 820px) {
+            .scenes-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.8rem 2rem;
+            }
+            .nav-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            .hero-desc {
+                padding: 1.5rem;
+            }
+            .scenes-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .faq-summary {
+                padding: 1.5rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <!-- 导航 -->
+    <nav class="nav-bar">
+        <span class="nav-brand">开云 · 运动场</span>
+        <div class="nav-links">
+            <a href="#">动态</a>
+            <a href="#">场景</a>
+            <a href="#">说明</a>
+            <a href="#">联系</a>
+        </div>
+    </nav>
+
+    <!-- Hero + 核心介绍 -->
+    <div class="hero-section">
+        <h1>联结 · 张力 · 节奏</h1>
+        <div class="sub">开云 背后的运动叙事</div>
+        <div class="hero-desc">
+            <p><strong>开云</strong> 所承载的不仅是视觉符号，更是一种身体与环境的对话方式。<br>
+            从户外旷野到城市缝隙，运动不再局限于场地——它成为流动的日常语言。
+            我们关注 <strong>机能、适应、反馈</strong> 这三个基础维度，并以此构建运动场景的再定义。
+            品牌 <a href="https://sport-kering.com">开云</a> 将这些理念融入产品与空间逻辑，让穿着者与周围产生真实的互动。</p>
+        </div>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="scenes-grid">
+        <div class="scene-card">
+            <h3>砾石路径</h3>
+            <p>不平整的地表需要更敏锐的抓地力与踝部支撑。开云在鞋底纹路与中底材料上采用分区缓冲，让每一步都稳定传递力量，减少地形干扰。</p>
+        </div>
+        <div class="scene-card">
+            <h3>间歇节奏</h3>
+            <p>短距离变速、急停、变向 —— 衣物的延展性与透气排汗直接影响运动表现。开云通过面料织法调整散热通道，在不同强度下维持体表舒适。</p>
+        </div>
+        <div class="scene-card">
+            <h3>城市通勤</h3>
+            <p>日常步行、骑行、公共交通中的动态姿势复杂。开云的结构设计强调关节活动余量，同时保持利落轮廓，兼顾功能与城市审美。</p>
+        </div>
+    </div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <div class="faq-summary">
+        <h2>常见说明 · 轻量参考</h2>
+        <div class="faq-item">
+            <span class="faq-q">开云 适用于哪些运动强度？</span>
+            <span class="faq-a">主要覆盖中等强度活动：越野徒步、城市慢跑、综合训练、日常通勤。极限竞技或专业赛事场景建议根据具体需求另行评估。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">材料与维护</span>
+            <span class="faq-a">多数产品采用合成纤维与再生聚酯混纺，部分系列含有机棉。建议参照洗标低温洗涤，避免柔顺剂以保持透气膜功能。详细护理可参考 <a href="https://sport-kering.com">开云</a> 产品页面。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">尺码与适配</span>
+            <span class="faq-a">鞋款偏向标准宽度，高足弓或宽脚掌用户建议选大半码。服饰版型为运动修身剪裁，活动量大的部位已预留伸展余量。如有疑问可对照站点内尺码指南。</span>
+        </div>
+    </div>
+
+    <!-- 页尾 -->
+    <div class="footer-note">
+        <p>基于真实运动需求 · 内容由 <a href="https://sport-kering.com">开云</a> 出发延伸</p>
+        <p style="margin-top: 0.4rem; font-size: 0.8rem; opacity: 0.7;">反馈与动态 · 场景持续更新</p>
+    </div>
+</div>
+</body>
+</html>
